@@ -1,6 +1,7 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
-class TextProcessorBase(ABC):
+class TextProcessor(ABC):
+    @abstractmethod
     def process(self, text: str) -> str:
         pass
