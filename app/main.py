@@ -13,6 +13,7 @@ def input_text():
     text = request.args.get("text")
     return process_text(text, FakeTextProcessor())
 
+
 @app.route("/v1/hugging_face")
 def hugging_face():
     text = request.args.get("text")
