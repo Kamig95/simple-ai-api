@@ -1,4 +1,5 @@
-MODEL_DIR = "models"
+MODEL_DIR = "saved_models"
 HUGGING_FACE = "hugging_face"
 HF_TEXT_CLASSIFICATION = "text-classification"
 HF_SENTIMENT_ANALYSIS = "sentiment-analysis"
+KERAS = "keras"
