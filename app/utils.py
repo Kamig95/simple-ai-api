@@ -1,9 +1,11 @@
 from typing import Final
 
+from ai.text_processors.text_processor import TextProcessor
 from ai.registry.model_registry import ModelRegistry
 from ai.text_processors.hugging_face_text_processor import HuggingFaceTextProcessor
 from ai.text_processors.text_processor import TextProcessor
 from settings import HF_SENTIMENT_ANALYSIS
+
 
 TEXT_ARG_NEEDED: Final[str] = "`text` argument needed"
 
