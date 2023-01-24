@@ -1,6 +1,8 @@
 from typing import Final
 
+
 from ai.text_processors.text_processor import TextProcessor
+
 
 TEXT_ARG_NEEDED: Final[str] = "`text` argument needed"
 

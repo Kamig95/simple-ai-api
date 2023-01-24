@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 
 from ai.registry.tasks import TaskName
+
 from app.models import register_all_models
 from app.utils import process_text
 from ai.text_processors.fake_text_processor import FakeTextProcessor
-
 
 app = FastAPI()
 

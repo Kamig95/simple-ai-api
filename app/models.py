@@ -2,6 +2,7 @@ import keras_nlp
 
 from ai.registry.model_registry import ModelRegistry
 from ai.registry.tasks import TaskName
+
 from ai.text_processors.hugging_face_text_processor import HuggingFaceTextProcessor
 from ai.text_processors.keras_text_processor import KerasTextProcessor
 from ai.utils.model_downloaders import load_or_download_from_hf
