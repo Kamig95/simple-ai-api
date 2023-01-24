@@ -1,6 +1,7 @@
 from flask import Flask, request
 
-from app.utils import process_text, register_all_models
+from app.models import register_all_models
+from app.utils import process_text
 from ai.text_processors.fake_text_processor import FakeTextProcessor
 
 app = Flask(__name__)
@@ -14,7 +15,7 @@ def input_text():
     return process_text(text, FakeTextProcessor())
 
 
-@app.route("/v1/hugging_face")
+@app.route("/v1/sentiment_analysis")
 def hugging_face():
     text = request.args.get("text")
     model = request.args.get("model")
