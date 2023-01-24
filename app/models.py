@@ -1,6 +1,7 @@
 import keras_nlp
 
 from ai.registry.model_registry import ModelRegistry
+from ai.registry.tasks import TaskName
 from ai.text_processors.hugging_face_text_processor import HuggingFaceTextProcessor
 from ai.text_processors.keras_text_processor import KerasTextProcessor
 from ai.utils.model_downloaders import load_or_download_from_hf
@@ -18,6 +19,7 @@ def register_all_models() -> ModelRegistry:
             )
         ),
         "This is simple model for sentiment analysis of text from hugging face",
+        TaskName.sentiment_analysis,
     )
     model_registry.register(
         "bert_sa_keras",
@@ -28,5 +30,6 @@ def register_all_models() -> ModelRegistry:
             labels=["NEGATIVE", "POSITIVE"],
         ),
         "This is simple model for sentiment analysis of text from keras",
+        TaskName.sentiment_analysis,
     )
     return model_registry
