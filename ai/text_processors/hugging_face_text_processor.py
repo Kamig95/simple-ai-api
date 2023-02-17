@@ -5,8 +5,6 @@ from ai.text_processors.text_processor import TextProcessor
 
 
 class HuggingFaceTextProcessor(TextProcessor):
-    def __init__(self, model: Pipeline):
-        self._model = model
 
     def process(self, text: str) -> str:
         return self._model(text)[0]["label"]
