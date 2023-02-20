@@ -1,15 +1,11 @@
-Flask==2.2.2
 transformers==4.25.1
-keras==2.11.0
 keras-nlp==0.4.0
-tensorflow==2.11.0
 torch==1.13.1
 torchtext==0.14.1
 
-pytest==7.1.2
+pytest
 pytest-mock==3.10.0
 coverage==7.0.5
 
 fastapi==0.89.1
 uvicorn==0.20.0
-
