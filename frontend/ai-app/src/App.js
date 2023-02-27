@@ -1,10 +1,10 @@
 import './App.css';
-import Translate from './components/Predict';
+import Predict from './components/Predict';
 
 function App() {
   return (
     <div>
-      <Translate/>
+      <Predict/>
     </div>
   );
 }

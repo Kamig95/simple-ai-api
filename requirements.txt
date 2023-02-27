@@ -2,6 +2,7 @@ transformers==4.25.1
 keras-nlp==0.4.0
 torch==1.13.1
 torchtext==0.14.1
+torchdata
 
 pytest
 pytest-mock==3.10.0
