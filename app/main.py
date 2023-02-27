@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from ai.registry.tasks import TaskName
 
@@ -7,6 +8,14 @@ from app.utils import process_text
 from ai.text_processors.fake_text_processor import FakeTextProcessor
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 model_registry = register_all_models()
 

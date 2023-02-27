@@ -24,7 +24,7 @@ def register_all_models() -> ModelRegistry:
     model_registry.register(
         "bert_sa_hf",
         huggingface_text_processor_builder.text_processor,
-        "This is simple model for sentiment analysis of text from hugging face",
+        "Simple model for sentiment analysis of text from hugging face",
         TaskName.sentiment_analysis,
     )
     keras_builder = KerasTextProcessorBuilder({
@@ -38,7 +38,7 @@ def register_all_models() -> ModelRegistry:
     model_registry.register(
         "bert_sa_keras",
         keras_builder.text_processor,
-        "This is simple model for sentiment analysis of text from keras",
+        "Simple model for sentiment analysis of text from keras",
         TaskName.sentiment_analysis,
     )
 
@@ -52,7 +52,7 @@ def register_all_models() -> ModelRegistry:
     model_registry.register(
         "news_class_pytorch",
         pytorch_builder.text_processor,
-        "This is simple model for text classification of AG news",
+        "Simple model for text classification of AG news",
         TaskName.news_classification,
     )
     return model_registry
