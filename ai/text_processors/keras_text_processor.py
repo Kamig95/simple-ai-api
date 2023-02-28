@@ -1,9 +1,12 @@
-from typing import List, Any
+from typing import List
 
 from ai.text_processors.text_processor import TextProcessor
 
 
 class KerasTextProcessor(TextProcessor):
+    def __init__(self, model, labels):
+        self._model = model
+        self._labels = labels
 
     def process(self, text: str) -> str:
         label_index = self._model.predict([text]).argmax(axis=-1)[0]
