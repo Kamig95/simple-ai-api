@@ -2,10 +2,11 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from ai.registry.tasks import TaskName
+from ai.text_processors.fake_text_processor import FakeTextProcessor
 
 from app.models import register_all_models
 from app.utils import process_text
-from ai.text_processors.fake_text_processor import FakeTextProcessor
+
 
 app = FastAPI()
 

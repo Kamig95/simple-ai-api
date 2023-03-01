@@ -2,5 +2,5 @@ from enum import Enum
 
 
 class TaskName(str, Enum):
-    sentiment_analysis = "sentiment-analysis"
-    news_classification = "new-classification"
+    SENTIMENT_ANALYSIS = "sentiment-analysis"
+    NEWS_CLASSIFICATION = "new-classification"
