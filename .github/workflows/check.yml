@@ -32,5 +32,9 @@ jobs:
         run: |
           radon cc ai
           radon cc app
+      - name: Check test coverage
+        run: |
+          coverage run --source=ai -m pytest --disable-warnings
+          coverage report -m
       
       
