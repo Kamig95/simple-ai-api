@@ -3,13 +3,13 @@ from ai.text_processors.hugging_face_text_processor import HuggingFaceTextProces
 
 POSITIVE_LABEL = "POSITIVE"
 TEST_TEXT = "test_text"
+RESULT_KEY = "label"
 
 
 def test_hugging_face_process(mocker):
     model_mock = mocker.MagicMock()
-    model_mock.return_value = [{"label": POSITIVE_LABEL}]
-    text_processor = HuggingFaceTextProcessor()
-    text_processor.set_model(model_mock)
+    model_mock.return_value = [{RESULT_KEY: POSITIVE_LABEL}]
+    text_processor = HuggingFaceTextProcessor(model_mock, RESULT_KEY)
 
     result = text_processor.process(TEST_TEXT)
 
@@ -19,9 +19,8 @@ def test_hugging_face_process(mocker):
 
 def test_hugging_face_process_batch(mocker):
     model_mock = mocker.MagicMock()
-    model_mock.return_value = [{"label": POSITIVE_LABEL}, {"label": POSITIVE_LABEL}]
-    text_processor = HuggingFaceTextProcessor()
-    text_processor.set_model(model_mock)
+    model_mock.return_value = [{RESULT_KEY: POSITIVE_LABEL}, {RESULT_KEY: POSITIVE_LABEL}]
+    text_processor = HuggingFaceTextProcessor(model_mock, RESULT_KEY)
 
     input_texts = [TEST_TEXT, TEST_TEXT]
     result = text_processor.process_batch(input_texts)

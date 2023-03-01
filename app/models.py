@@ -1,14 +1,13 @@
 import keras_nlp
+from torchtext.datasets import AG_NEWS
 
 from ai.models.pytorch.text_classification_model import TextClassificationModel
 from ai.registry.model_registry import ModelRegistry
 from ai.registry.tasks import TaskName
-
-from torchtext.datasets import AG_NEWS
-
 from ai.text_processors.hugging_face_text_processor import HuggingFaceTextProcessor
 from ai.text_processors.keras_text_processor import KerasTextProcessor
 from ai.text_processors.pytorch_text_processor import PytorchTextProcessor
+from ai.utils.model_downloaders import load_or_download_from_hf
 
 
 def register_all_models() -> ModelRegistry:
@@ -17,34 +16,34 @@ def register_all_models() -> ModelRegistry:
     model_registry.register(
         "bert_sa_hf",
         HuggingFaceTextProcessor(
-            model_filename="distilbert-base-uncased-finetuned-sst-2-english",
-            task=TaskName.sentiment_analysis,
+            load_or_download_from_hf(
+                model_filename="distilbert-base-uncased-finetuned-sst-2-english",
+                task=TaskName.SENTIMENT_ANALYSIS,
+            ),
             result_key="label",
         ),
         "Model for sentiment analysis of text from hugging face",
-        TaskName.sentiment_analysis,
+        TaskName.SENTIMENT_ANALYSIS,
     )
 
     model_registry.register(
         "bert_qa_hf",
         HuggingFaceTextProcessor(
-            model_filename="gpt2",
-            task="text-generation",
+            load_or_download_from_hf(model_filename="gpt2", task="text-generation"),
             result_key="generated_text",
         ),
         "Model for text generation from hugging face",
-        TaskName.sentiment_analysis,
+        TaskName.SENTIMENT_ANALYSIS,
     )
 
     model_registry.register(
         "translation_en_to_fr_hf",
         HuggingFaceTextProcessor(
-            model_filename=None,
-            task="translation_en_to_fr",
+            load_or_download_from_hf(model_filename=None, task="translation_en_to_fr"),
             result_key="translation_text",
         ),
         "Model for translation from en to fr from hugging face",
-        TaskName.sentiment_analysis,
+        TaskName.SENTIMENT_ANALYSIS,
     )
 
     model_registry.register(
@@ -56,7 +55,7 @@ def register_all_models() -> ModelRegistry:
             labels={0: "NEGATIVE", 1: "POSITIVE"},
         ),
         "Model for sentiment analysis of text from keras",
-        TaskName.sentiment_analysis,
+        TaskName.SENTIMENT_ANALYSIS,
     )
 
     model_registry.register(
@@ -65,9 +64,9 @@ def register_all_models() -> ModelRegistry:
             model=TextClassificationModel(95811, 64, 4),
             model_filename="news_class_pytorch.pt",
             labels={1: "World", 2: "Sports", 3: "Business", 4: "Sci/Tec"},
-            data_iterator=AG_NEWS(split="train"),
+            data_iterator=AG_NEWS(split="train"),  # pylint: disable=E1120
         ),
         "Model for text classification of AG news",
-        TaskName.news_classification,
+        TaskName.NEWS_CLASSIFICATION,
     )
     return model_registry

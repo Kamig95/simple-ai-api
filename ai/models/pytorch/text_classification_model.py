@@ -2,19 +2,20 @@ from torch import nn
 
 
 class TextClassificationModel(nn.Module):
+
     INIT_RANGE = 0.5
-    
+
     def __init__(self, vocab_size, embed_dim, num_class):
-        super(TextClassificationModel, self).__init__()
+        super().__init__()
         self.embedding = nn.EmbeddingBag(vocab_size, embed_dim, sparse=True)
-        self.fc = nn.Linear(embed_dim, num_class)
+        self.linear = nn.Linear(embed_dim, num_class)
         self.init_weights()
 
     def init_weights(self):
         self.embedding.weight.data.uniform_(-self.INIT_RANGE, self.INIT_RANGE)
-        self.fc.weight.data.uniform_(-self.INIT_RANGE, self.INIT_RANGE)
-        self.fc.bias.data.zero_()
+        self.linear.weight.data.uniform_(-self.INIT_RANGE, self.INIT_RANGE)
+        self.linear.bias.data.zero_()
 
     def forward(self, text, offsets):
         embedded = self.embedding(text, offsets)
-        return self.fc(embedded)
+        return self.linear(embedded)
