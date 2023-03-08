@@ -2,6 +2,7 @@ import keras_nlp
 from torchtext.datasets import AG_NEWS
 
 from ai.models.pytorch.text_classification_model import TextClassificationModel
+from ai.models.pytorch.utils import get_text_pipeline
 from ai.registry.model_registry import ModelRegistry
 from ai.registry.tasks import TaskName
 from ai.text_processors.hugging_face_text_processor import HuggingFaceTextProcessor
@@ -33,7 +34,7 @@ def register_all_models() -> ModelRegistry:
             result_key="generated_text",
         ),
         "Model for text generation from hugging face",
-        TaskName.SENTIMENT_ANALYSIS,
+        TaskName.TEXT_GENERATION,
     )
 
     model_registry.register(
@@ -43,7 +44,7 @@ def register_all_models() -> ModelRegistry:
             result_key="translation_text",
         ),
         "Model for translation from en to fr from hugging face",
-        TaskName.SENTIMENT_ANALYSIS,
+        TaskName.TRANSLATION,
     )
 
     model_registry.register(
@@ -64,7 +65,7 @@ def register_all_models() -> ModelRegistry:
             model=TextClassificationModel(95811, 64, 4),
             model_filename="news_class_pytorch.pt",
             labels={1: "World", 2: "Sports", 3: "Business", 4: "Sci/Tec"},
-            data_iterator=AG_NEWS(split="train"),  # pylint: disable=E1120
+            preprocessor=get_text_pipeline(AG_NEWS(split="train")),  # pylint: disable=E1120
         ),
         "Model for text classification of AG news",
         TaskName.NEWS_CLASSIFICATION,

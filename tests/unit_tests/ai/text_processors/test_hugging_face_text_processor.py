@@ -19,7 +19,10 @@ def test_hugging_face_process(mocker):
 
 def test_hugging_face_process_batch(mocker):
     model_mock = mocker.MagicMock()
-    model_mock.return_value = [{RESULT_KEY: POSITIVE_LABEL}, {RESULT_KEY: POSITIVE_LABEL}]
+    model_mock.return_value = [
+        {RESULT_KEY: POSITIVE_LABEL},
+        {RESULT_KEY: POSITIVE_LABEL},
+    ]
     text_processor = HuggingFaceTextProcessor(model_mock, RESULT_KEY)
 
     input_texts = [TEST_TEXT, TEST_TEXT]
