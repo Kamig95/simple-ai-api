@@ -38,4 +38,4 @@ async def all_models():
 
 @app.get("/models/{task}")
 async def models(task: TaskName):
-    return {"models": model_registry.get_models(TaskName[task])}
+    return {"models": model_registry.get_models(TaskName(task))}
